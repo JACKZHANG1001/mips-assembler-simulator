@@ -6,14 +6,23 @@
 #define MIPS_ASSEMBLER_SIMULATOR_ASS_H
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <vector>
+#include <cctype>
+#include <cstdint>
+#include  <map>
+#include <list>
+#include <bitset>
+
+
 using namespace std;
 
-const int TEXT_BASE_ADDR = 0x400000;
+const uint32_t TEXT_BASE_ADDR = 0x400000; // global text-base
 
 
 enum INSTRUCTION_TYPE { R, I, J };
 enum REGISTER {
-    $zero,     // 0
+    $zero = 0,     // 0
     $at,       // 1
     $v0,       // 2
     $v1,       // 3
@@ -61,8 +70,8 @@ enum INSTRUCTION {  // op:hex, funct:hex
     MULTU,       // r, op: 00, funct: 19
     MUL,         // r, op: 1c, funct: 02
     MADD,        // r, op: 1c, funct: 00
-    MSUB,        // r, op: 1c, funct: 04
     MADDU,       // r, op: 1c, funct: 01
+    MSUB,        // r, op: 1c, funct: 04
     MSUBU,       // r, op: 1c, funct: 05
     NOR,         // r, op: 00, funct: 27
     OR,          // r, op: 00, funct: 25
@@ -90,7 +99,7 @@ enum INSTRUCTION {  // op:hex, funct:hex
     BLTZAL,      // i, op: 01 *
     BLTZ,        // i, op: 01 *
     BNE,         // i, op: 05
-    J,           // j, op: 02
+    j,           // j, op: 02
     JAL,         // g, op: 03
     JALR,        // r, op: 00, funct: 09
     JR,          // r, op: 00, funct: 08
@@ -129,32 +138,35 @@ enum INSTRUCTION {  // op:hex, funct:hex
 
 struct INSTRUCTION_INFO {
     INSTRUCTION name;
-    int op;
-    int rs;
-    int rt;
-    int rd;
-    int shamt;
-    int funct;
-    int etc;
+    INSTRUCTION_TYPE type;
+    uint32_t op;
+    uint32_t rs;
+    uint32_t rt;
+    uint32_t rd;
+    uint32_t shamt;
+    uint32_t funct;
+    int32_t etc;
 };
 
-struct LABEL_TABLE {
-    char** name;
-    int* addr;
-};
+map<string,uint32_t> LABEL_TABLE; // global label table
+
+// list can be helpful when merging two lines
+list<string> LINES; // global lines
+
+vector<vector<string> > TOKENS; // global TOKENS
+
+void read_mips(istream &);
+
+void read_mips(fstream &, char* filename);
+
+void clean_comment(list<string> &);
+
+INSTRUCTION_INFO get_instruction_info(vector<string> & line, uint32_t loc);
+
+string info_to_binary(INSTRUCTION_INFO &);
+
+vector<string> translate(vector<vector<string> > &);
+
+#endif
 
 
-void clean_comment(istream &);
-
-LABEL_TABLE get_label_table(istream &);
-
-void replace_label(istream &);
-
-INSTRUCTION_INFO get_instruction_info(istream &, char *);
-
-int info_to_binary(INSTRUCTION_INFO &);
-
-void output_file(ostream &, char * filename);
-
-
-#endif //MIPS_ASSEMBLER_SIMULATOR_ASS_H
