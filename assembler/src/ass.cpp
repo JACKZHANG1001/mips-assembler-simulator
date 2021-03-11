@@ -16,18 +16,61 @@ using namespace std;
 
 void read_mips(istream & input) {
     // read from stdin
-    string temp;
+    string temp = "";
+    bool empty_flag = false;
     while (getline(input, temp)) {
-        LINES.push_back(temp);
+        if (temp.find(".text") != string::npos)
+                break;
+    }
+    while (getline(input, temp)) {
+        empty_flag = false;
+        if (temp.length() == 0)
+            empty_flag = true;
+        for (auto i = 0; i < temp.length(); i++) {
+            if (isalpha(temp[i]) ||
+                isalnum(temp[i]) ||
+                temp[i] == '_' ||
+                temp[i] == '.') {
+
+                empty_flag = false;
+                break;
+            } else {
+                empty_flag = true;
+            }
+        }
+        if (!empty_flag)
+            LINES.push_back(temp);
     }
 }
 
-void read_mips(fstream & input, char* filename) {
+void read_mips(ifstream & input, char* filename) {
     // read from files
-    string temp;
+    string temp = "";
+    bool empty_flag = false;
     input.open(filename);
-    while (getline(input, temp))
-        LINES.push_back(temp);
+    while (getline(input, temp)) {
+        if (temp.find(".text") != string::npos)
+            break;
+    }
+    while (getline(input, temp)) {
+        empty_flag = false;
+        if (temp.length() == 0)
+            empty_flag = true;
+        for (auto i = 0; i < temp.length(); i++) {
+            if (isalpha(temp[i]) ||
+                isalnum(temp[i]) ||
+                temp[i] == '_' ||
+                temp[i] == '.') {
+
+                empty_flag = false;
+                break;
+            } else {
+                empty_flag = true;
+            }
+        }
+        if (!empty_flag)
+            LINES.push_back(temp);
+    }
     input.close();
 }
 
@@ -1268,19 +1311,18 @@ vector<string> translate(vector<vector<string> > & tokens = TOKENS) {
 
 int main(int argc, char** argv) {
     if (argc > 1) {
-        fstream output;
-        fstream input;
-        input.open(argv[1]);
+        ofstream output;
+        ifstream input;
         read_mips(input, argv[1]);
         clean_comment(LINES);
         LABEL_TABLE = get_label_table(LINES);
         tokenizer();
         vector<string> result = translate();
-        input.close();
         output.open("OUTPUT");
         for (auto i = result.begin(); i != result.end(); i++) {
             output << (*i) << endl;
         }
+        output.close();
     } else {
         read_mips(cin);
         clean_comment(LINES);
