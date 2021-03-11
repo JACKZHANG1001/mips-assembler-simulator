@@ -36,8 +36,10 @@ void clean_comment(list<string> & lines) {
         string temp = "";
         int quote_loc = 0;
         for (auto i = 0; i < line_pr->length(); i++) {
-            if ((*line_pr)[i] == ';')
+            if ((*line_pr)[i] == ':') {
                 quote_loc = i;
+                break;
+            }
             else
                 quote_loc = -1;
         }
@@ -57,14 +59,16 @@ void clean_comment(list<string> & lines) {
             for (auto i = 0; i < line_pr->length(); i++) {
                 if (!isspace((*line_pr)[i]) && isspace((*line_pr)[i+1])) {
                     flag2 = true;
-                }
-                if (flag2 && !isspace((*line_pr)[i])
-                    && isspace((*line_pr)[i+1])) {
-                    flag2 = false;
-                    (*line_pr)[i+1] = ',';
+                    for (auto j = i + 1; j < line_pr->length(); j++) {
+                        if (flag2 && !isspace((*line_pr)[j])
+                            && isspace((*line_pr)[j+1])) {
+                            flag2 = false;
+                            (*line_pr)[j+1] = ',';
+                            break;
+                        }
+                    }
                     break;
                 }
-
             }
         }
         // above achieves
@@ -101,8 +105,10 @@ string releasing_label(string &line) {
     bool flag = false;
     string temp = "";
     for (auto i = 0; i < line.length(); i++) {
-        if (line[i] == ':')
+        if (line[i] == ':') {
             flag = true;
+            continue;
+        }
         if (!flag)
             continue;
         else
@@ -131,6 +137,7 @@ map<string,uint32_t> get_label_table(list<string> & lines) {
         auto temp_pr = lines.begin();
         while (temp_pr != line_pr) {
             line_no++;
+            temp_pr++;
         }
         string temp = *line_pr;
         for (auto i = 0; i < temp.length(); i++) {
@@ -1236,7 +1243,7 @@ string info_to_binary(INSTRUCTION_INFO & info) {
     string funct = bitset<6>(info.funct).to_string();
     string etc = "";
     if (type == R) {
-       return op + rs + rt + rt + rd + shamt + funct;
+       return op + rs + rt + rd + shamt + funct;
     }
     if (type == I) {
         etc = bitset<16>(info.etc).to_string();
@@ -1266,6 +1273,7 @@ int main(int argc, char** argv) {
         input.open(argv[1]);
         read_mips(input, argv[1]);
         clean_comment(LINES);
+        LABEL_TABLE = get_label_table(LINES);
         tokenizer();
         vector<string> result = translate();
         input.close();
@@ -1276,6 +1284,7 @@ int main(int argc, char** argv) {
     } else {
         read_mips(cin);
         clean_comment(LINES);
+        LABEL_TABLE = get_label_table(LINES);
         tokenizer();
         vector<string> result = translate();
         for (auto i = result.begin(); i != result.end(); i++) {
