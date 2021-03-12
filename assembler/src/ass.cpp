@@ -127,7 +127,12 @@ void clean_comment(list<string> & lines) {
                 break;
         }
         // empty line detected
-        if (temp.length() == 0) continue;
+        if (temp.length() == 0) {
+            auto temp_pr = line_pr;
+            line_pr--;
+            lines.erase(temp_pr);
+            continue;
+        }
         *line_pr = temp;
     }
 }
@@ -177,6 +182,7 @@ map<string,uint32_t> get_label_table(list<string> & lines) {
     string label_to_add = "";
 
     for (auto line_pr = lines.begin(); line_pr != lines.end(); line_pr++) {
+        line_no = 0;
         auto temp_pr = lines.begin();
         while (temp_pr != line_pr) {
             line_no++;
@@ -252,7 +258,7 @@ int branch_label_trans(vector<string> & line, uint32_t loc) {
     auto label_pr = line.end() - 1;
     auto addr_pr = LABEL_TABLE.find((*label_pr));
     auto label_loc = addr_pr->second;
-    auto offset = label_loc - loc;
+    auto offset = label_loc - (loc + 1); // PC + 4
     return offset;
 }
 
@@ -260,7 +266,7 @@ int jump_label_trans(vector<string> & line, uint32_t loc) {
     // help function
     auto label_pr = line.end() - 1;
     auto addr_pr = LABEL_TABLE.find((*label_pr));
-    auto label_loc = addr_pr->second;
+    auto label_loc = addr_pr->second + TEXT_BASE_ADDR / 4; // # (line_num + 0x400000 / 4) word
     auto offset = label_loc;
     return offset;
 }
@@ -655,8 +661,8 @@ INSTRUCTION_INFO get_instruction_info(vector<string> & line, uint32_t loc) {
        temp.name = SLL;
        temp.type = R;
        temp.op = 0x00;
-       temp.shamt = get_register(line[3]);
-       temp.funct = 0x20;
+       temp.shamt = stoi(line[3]);
+       temp.funct = 0x00;
        temp.rs = 0; // ignored
        temp.rt = get_register(line[2]);
        temp.rd = get_register(line[1]);
@@ -675,7 +681,7 @@ INSTRUCTION_INFO get_instruction_info(vector<string> & line, uint32_t loc) {
        temp.name = SRA;
        temp.type = R;
        temp.op = 0x00;
-       temp.shamt = get_register(line[3]);
+       temp.shamt = stoi(line[3]);
        temp.funct = 0x03;
        temp.rs = 0;
        temp.rt = get_register(line[2]);
@@ -695,7 +701,7 @@ INSTRUCTION_INFO get_instruction_info(vector<string> & line, uint32_t loc) {
        temp.name = SRL;
        temp.type = R;
        temp.op = 0x00;
-       temp.shamt = get_register(line[3]);
+       temp.shamt = stoi(line[3]);
        temp.funct = 0x02;
        temp.rs = 0;
        temp.rt = get_register(line[2]);
@@ -704,9 +710,9 @@ INSTRUCTION_INFO get_instruction_info(vector<string> & line, uint32_t loc) {
      if (ins == "srlv") {
        temp.name = SRLV;
        temp.type = R;
-       temp.op = 0x06;
+       temp.op = 0x00;
        temp.shamt = 0;
-       temp.funct = 0x20;
+       temp.funct = 0x06;
        temp.rs = get_register(line[3]);
        temp.rt = get_register(line[2]);
        temp.rd = get_register(line[1]);
