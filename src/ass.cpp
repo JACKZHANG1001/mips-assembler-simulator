@@ -2,7 +2,7 @@
 // Created by Jack on 2021/3/2.
 //
 
-#include "../include/ass.h"
+#include "ass.h"
 using namespace std;
 
 /*
@@ -13,6 +13,11 @@ using namespace std;
  *
  *       .text & .data ? in reading part
  */
+
+const uint32_t TEXT_BASE_ADDR = 0x400000;
+map<string, uint32_t> LABEL_TABLE;
+list<string> LINES;
+vector<vector<string> > TOKENS;
 
 void read_mips(istream & input) {
     // read from stdin
@@ -244,7 +249,7 @@ vector<string> split(string &line) {
     return result;
 }
 
-vector<vector<string> > tokenizer(list<string> & lines = LINES) {
+vector<vector<string> > tokenizer(list<string> & lines) {
     for (auto line = lines.begin(); line != lines.end(); line++) {
         TOKENS.push_back(split((*line)));
     }
@@ -1304,7 +1309,7 @@ string info_to_binary(INSTRUCTION_INFO & info) {
     }
 }
 
-vector<string> translate(vector<vector<string> > & tokens = TOKENS) {
+vector<string> translate(vector<vector<string> > & tokens) {
     vector<string> result;
     for (auto token = tokens.begin(); token != tokens.end(); token++) {
         uint32_t loc = token - tokens.begin();
@@ -1315,29 +1320,3 @@ vector<string> translate(vector<vector<string> > & tokens = TOKENS) {
     return result;
 }
 
-int main(int argc, char** argv) {
-    if (argc > 1) {
-        ofstream output;
-        ifstream input;
-        read_mips(input, argv[1]);
-        clean_comment(LINES);
-        LABEL_TABLE = get_label_table(LINES);
-        tokenizer();
-        vector<string> result = translate();
-        output.open("OUTPUT");
-        for (auto i = result.begin(); i != result.end(); i++) {
-            output << (*i) << endl;
-        }
-        output.close();
-    } else {
-        read_mips(cin);
-        clean_comment(LINES);
-        LABEL_TABLE = get_label_table(LINES);
-        tokenizer();
-        vector<string> result = translate();
-        for (auto i = result.begin(); i != result.end(); i++) {
-            cout << (*i) << endl;
-        }
-    }
-    return 0;
-}

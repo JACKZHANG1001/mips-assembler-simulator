@@ -5,5 +5,16 @@ project(mips-assembler-simulator)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-include_directories(${PROJECT_SOURCE_DIR})
-add_executable(assembler assembler/src/ass.cpp)
+
+add_library(assembler_lib STATIC
+        ${PROJECT_SOURCE_DIR}/src/ass.cpp)
+target_include_directories(assembler_lib
+        PUBLIC
+            ${PROJECT_SOURCE_DIR}/include/assembler)
+
+
+
+add_executable(assembler src/assembler.cpp)
+
+target_link_libraries(assembler
+            assembler_lib)

@@ -89,5 +89,6 @@ The supporting instructions are listed below:
     SYSCALL      // r, op: 00, funct: 0c
 ```
 
+### Simulator
 
 

@@ -17,7 +17,7 @@
 
 using namespace std;
 
-const uint32_t TEXT_BASE_ADDR = 0x400000; // global text-base
+extern const uint32_t TEXT_BASE_ADDR ; // global text-base
 
 
 enum INSTRUCTION_TYPE { R, I, J };
@@ -148,24 +148,28 @@ struct INSTRUCTION_INFO {
     int32_t etc;
 };
 
-map<string,uint32_t> LABEL_TABLE; // global label table
+extern map<string,uint32_t> LABEL_TABLE; // global label table
 
 // list can be helpful when merging two lines
-list<string> LINES; // global lines
+extern list<string> LINES; // global lines
 
-vector<vector<string> > TOKENS; // global TOKENS
+extern vector<vector<string> > TOKENS; // global TOKENS
 
-void read_mips(istream &);
+void read_mips(istream & input);
 
-void read_mips(fstream &, char* filename);
+void read_mips(ifstream & input, char* filename);
 
-void clean_comment(list<string> &);
+void clean_comment(list<string> & lines);
 
 INSTRUCTION_INFO get_instruction_info(vector<string> & line, uint32_t loc);
 
+map<string,uint32_t> get_label_table(list<string> & lines);
+
 string info_to_binary(INSTRUCTION_INFO &);
 
-vector<string> translate(vector<vector<string> > &);
+vector<vector<string> > tokenizer(list<string> & lines = LINES);
+
+vector<string> translate(vector<vector<string> > & tokens = TOKENS);
 
 #endif
 
