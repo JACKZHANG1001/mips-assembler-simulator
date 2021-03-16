@@ -25,3 +25,9 @@ add_executable(simulator src/simulator.cpp)
 
 target_link_libraries(assembler
             assembler_lib)
+
+target_link_libraries(simulator_lib
+            assembler_lib)
+
+target_link_libraries(simulator
+            simulator_lib)
