@@ -10,15 +10,18 @@
 #include <vector>
 #include <cctype>
 #include <cstdint>
-#include  <map>
+#include <map>
 #include <list>
 #include <bitset>
 
-
 using namespace std;
 
-extern const uint32_t TEXT_BASE_ADDR ; // global text-base
-
+extern const uint32_t TEXT_BASE_ADDR; // global text-base
+extern map<string,uint32_t> LABEL_TABLE; // global label table
+// list can be helpful when merging two lines
+extern list<string> LINES; // global lines
+extern list<string> DATA;
+extern vector<vector<string> > TOKENS; // global TOKENS
 
 enum INSTRUCTION_TYPE { R, I, J };
 enum REGISTER {
@@ -135,7 +138,6 @@ enum INSTRUCTION {  // op:hex, funct:hex
     MTLO,        // r, op: 00, funct: 13
     SYSCALL      // r, op: 00, funct: 0c
 };
-
 struct INSTRUCTION_INFO {
     INSTRUCTION name;
     INSTRUCTION_TYPE type;
@@ -148,16 +150,14 @@ struct INSTRUCTION_INFO {
     int32_t etc;
 };
 
-extern map<string,uint32_t> LABEL_TABLE; // global label table
+// does not work
+void read_text(istream & input);
 
-// list can be helpful when merging two lines
-extern list<string> LINES; // global lines
+void read_text(ifstream & input, char* filename);
 
-extern vector<vector<string> > TOKENS; // global TOKENS
+void read_data(istream & input);
 
-void read_mips(istream & input);
-
-void read_mips(ifstream & input, char* filename);
+void read_data(ifstream & input, char* filename);
 
 void clean_comment(list<string> & lines);
 
@@ -170,6 +170,10 @@ string info_to_binary(INSTRUCTION_INFO &);
 vector<vector<string> > tokenizer(list<string> & lines = LINES);
 
 vector<string> translate(vector<vector<string> > & tokens = TOKENS);
+
+vector<string> output();
+
+vector<string> output(char* filename);
 
 #endif
 

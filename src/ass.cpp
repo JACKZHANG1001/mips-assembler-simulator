@@ -17,9 +17,10 @@ using namespace std;
 const uint32_t TEXT_BASE_ADDR = 0x400000;
 map<string, uint32_t> LABEL_TABLE;
 list<string> LINES;
+list<string> DATA;
 vector<vector<string> > TOKENS;
 
-void read_mips(istream & input) {
+void read_text(istream & input) {
     // read from stdin
     string temp = "";
     bool empty_flag = false;
@@ -28,6 +29,8 @@ void read_mips(istream & input) {
                 break;
     }
     while (getline(input, temp)) {
+        if (temp.find(".data") != string::npos)
+            break;
         empty_flag = false;
         if (temp.length() == 0)
             empty_flag = true;
@@ -48,7 +51,7 @@ void read_mips(istream & input) {
     }
 }
 
-void read_mips(ifstream & input, char* filename) {
+void read_text(ifstream & input, char* filename) {
     // read from files
     string temp = "";
     bool empty_flag = false;
@@ -58,6 +61,8 @@ void read_mips(ifstream & input, char* filename) {
             break;
     }
     while (getline(input, temp)) {
+        if (temp.find(".data") != string::npos)
+            break;
         empty_flag = false;
         if (temp.length() == 0)
             empty_flag = true;
@@ -75,6 +80,70 @@ void read_mips(ifstream & input, char* filename) {
         }
         if (!empty_flag)
             LINES.push_back(temp);
+    }
+    input.close();
+}
+
+void read_data(istream & input) {
+    // read from stdin
+    string temp = "";
+    bool empty_flag = false;
+    while (getline(input, temp)) {
+        if (temp.find(".data") != string::npos)
+            break;
+    }
+    while (getline(input, temp)) {
+        if (temp.find(".text") != string::npos)
+            break;
+        empty_flag = false;
+        if (temp.length() == 0)
+            empty_flag = true;
+        for (auto i = 0; i < temp.length(); i++) {
+            if (isalpha(temp[i]) ||
+                isalnum(temp[i]) ||
+                temp[i] == '_' ||
+                temp[i] == '.') {
+
+                empty_flag = false;
+                break;
+            } else {
+                empty_flag = true;
+            }
+        }
+        if (!empty_flag)
+            DATA.push_back(temp);
+    }
+}
+
+void read_data(ifstream & input, char* filename) {
+    // read from files
+    string temp = "";
+    bool empty_flag = false;
+    input.open(filename);
+    while (getline(input, temp)) {
+        if (temp.find(".data") != string::npos)
+            break;
+    }
+    while (getline(input, temp)) {
+        if (temp.find(".text") != string::npos)
+            break;
+        empty_flag = false;
+        if (temp.length() == 0)
+            empty_flag = true;
+        for (auto i = 0; i < temp.length(); i++) {
+            if (isalpha(temp[i]) ||
+                isalnum(temp[i]) ||
+                temp[i] == '_' ||
+                temp[i] == '.') {
+
+                empty_flag = false;
+                break;
+            } else {
+                empty_flag = true;
+            }
+        }
+        if (!empty_flag)
+            DATA.push_back(temp);
     }
     input.close();
 }
@@ -125,6 +194,20 @@ void clean_comment(list<string> & lines) {
         // ___instruction____.... -> ___instruction,__....
         for (auto i = 0; i < line_pr->length(); i++) {
             // clean comments and whitespaces
+
+
+            // for .ascii or .asciiz
+            if ((*line_pr)[i] == '"') {
+                temp += '"';
+                for (auto j = i + 1; j < line_pr->length(); j++) {
+                    if ((*line_pr)[j] == '"') {
+                        temp += (*line_pr)[j];
+                        break;
+                    }
+                    temp += (*line_pr)[j];
+                }
+                break;
+            }
             if (isspace((*line_pr)[i])) continue;
             else if ((*line_pr)[i] != '#')
                 temp += (*line_pr)[i];
@@ -1316,6 +1399,39 @@ vector<string> translate(vector<vector<string> > & tokens) {
         INSTRUCTION_INFO temp = get_instruction_info((*token), loc);
         string bi_ins = info_to_binary(temp);
         result.push_back(bi_ins);
+    }
+    return result;
+}
+
+vector<string> output() {
+    read_text(cin);
+    read_data(cin);
+    clean_comment(LINES);
+    clean_comment(DATA);
+    get_label_table(LINES);
+    get_label_table(DATA);
+    tokenizer();
+    vector<string> result = translate();
+    result.push_back(".data");
+    for (auto i : DATA) {
+        result.push_back(i);
+    }
+    return result;
+}
+
+vector<string> output(char* filename) {
+    ifstream input;
+    read_text(input, filename);
+    read_data(input, filename);
+    clean_comment(LINES);
+    clean_comment(DATA);
+    get_label_table(LINES);
+    get_label_table(DATA);
+    tokenizer();
+    vector<string> result = translate();
+    result.push_back(".data");
+    for (auto i : DATA) {
+        result.push_back(i);
     }
     return result;
 }

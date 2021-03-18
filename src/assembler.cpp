@@ -7,27 +7,25 @@ using namespace std;
 
 int main(int argc, char** argv) {
     if (argc > 1) {
+        vector<string> result = output(argv[1]);
         ofstream output;
-        ifstream input;
-        read_mips(input, argv[1]);
-        clean_comment(LINES);
-        LABEL_TABLE = get_label_table(LINES);
-        tokenizer();
-        vector<string> result = translate();
-        output.open("OUTPUT");
+        output.open("OBJECT");
         for (auto i = result.begin(); i != result.end(); i++) {
             output << (*i) << endl;
         }
         output.close();
     } else {
-        read_mips(cin);
-        clean_comment(LINES);
-        LABEL_TABLE = get_label_table(LINES);
-        tokenizer();
-        vector<string> result = translate();
+        vector<string> result = output();
         for (auto i = result.begin(); i != result.end(); i++) {
             cout << (*i) << endl;
         }
     }
+
+    /*
+     * checking for LABEL_TABLE
+    for (auto i : LABEL_TABLE) {
+        cout << i.first << ": " << i.second << endl;
+    }
+     */
     return 0;
 }

@@ -13,7 +13,8 @@ target_include_directories(assembler_lib
             ${PROJECT_SOURCE_DIR}/include/assembler)
 
 add_library(simulator_lib STATIC
-        ${PROJECT_SOURCE_DIR}/src/simu.cpp)
+        ${PROJECT_SOURCE_DIR}/src/cpu.cpp
+        ${PROJECT_SOURCE_DIR}/src/memory.cpp)
 target_include_directories(simulator_lib
         PUBLIC
             ${PROJECT_SOURCE_DIR}/include/simulator)
