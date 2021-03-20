@@ -5,13 +5,35 @@
 #ifndef MIPS_ASSEMBLER_SIMULATOR_LOADER_H
 #define MIPS_ASSEMBLER_SIMULATOR_LOADER_H
 
+#define OBJ "OBJECT"
 #include "ass.h"
+#include "memory.h"
 using namespace std;
 
-extern const vector<string> TEXT;
-extern const vector<string> DATA;
+/*
+ * The format of the OBJECT file:
+ *
+ *
+ * --------------------------------
+ * bin
+ * bin
+ * ...
+ * bin
+ * .data
+ * mips directive
+ * ...
+ * mips directive
+ * ---------------------------------
+ */
 
-vector<string> read_data(ifstream & input, char* filename);
+extern vector<string> TEXT_SEG;
+extern vector<string> DATA_SEG;
+
+void read_object(ifstream & input, char* filename);
+
+void load_text();
+
+void load_data();
 
 
 

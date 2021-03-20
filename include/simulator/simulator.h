@@ -6,9 +6,6 @@
 #define MIPS_ASSEMBLER_SIMULATOR_SIMULATOR_H
 
 
-/* Little endian */
-#define SIMULATOR_LITTLEENDIAN
-
 
 extern bool IS_RUNNING;
 

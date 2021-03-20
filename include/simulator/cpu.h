@@ -24,11 +24,10 @@ void load(REGISTER reg, int32_t content);
 
 void store(REGISTER reg, uint32_t addr);
 
-void r_instruction(const string & bin_str);
+// a disassembler
+INSTRUCTION_INFO read_ins(const string & bin_str);
 
-void i_instruction(const string & bin_str);
-
-void j_instruction(const string & bin_str);
+void exe_ins(const INSTRUCTION_INFO & ins);
 
 
 #endif //MIPS_ASSEMBLER_SIMULATOR_CPU_H
