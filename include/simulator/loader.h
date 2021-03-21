@@ -8,6 +8,7 @@
 #define OBJ "OBJECT"
 #include "ass.h"
 #include "memory.h"
+#include "cpu.h"
 using namespace std;
 
 /*
@@ -29,7 +30,7 @@ using namespace std;
 extern vector<string> TEXT_SEG;
 extern vector<string> DATA_SEG;
 
-void read_object(ifstream & input, char* filename);
+void read_object(char* filename);
 
 void load_text();
 

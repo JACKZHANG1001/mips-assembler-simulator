@@ -9,7 +9,8 @@ using namespace std;
 vector<string> TEXT_SEG;
 vector<string> DATA_SEG;
 
-void read_object(ifstream & input, char* filename = OBJ) {
+void read_object(char* filename) {
+    ifstream input;
     input.open(filename);
     string line = "";
     while (getline(input, line)) {
@@ -20,10 +21,15 @@ void read_object(ifstream & input, char* filename = OBJ) {
     while (getline(input, line)) {
         DATA_SEG.push_back(line);
     }
+    input.close();
 }
 
 void load_text() {
-
+    uint32_t pos = TEXT_START;
+    for (auto text : TEXT_SEG) {
+        MEMORY[pos] = norm_to_little(text);
+        pos += 4;
+    }
 }
 
 void load_data() {

@@ -8,6 +8,9 @@
 #include "ass.h"
 #include "memory.h"
 #include "simulator.h"
+#include "syscall.h"
+#include <cmath>
+#include <cstdlib>
 using namespace std;
 
 typedef map<REGISTER, string> REG;
@@ -19,6 +22,8 @@ extern int32_t HI;
 extern int32_t LO;
 
 void init_cpu();
+
+string norm_to_little(const string & norm_str);
 
 void load(REGISTER reg, int32_t content);
 

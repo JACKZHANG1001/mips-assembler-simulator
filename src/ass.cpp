@@ -375,7 +375,8 @@ pair<int, int> load_store_addr_trans(vector<string> & line, uint32_t loc) {
         if ((*pr) == ')')
             rs = string(temp_pr, pr);
     }
-    int num_offset = stoi(offset);
+
+
     int num_rs = 0;
     char rs_2 = rs[1];
     switch (rs_2) {
@@ -464,6 +465,18 @@ pair<int, int> load_store_addr_trans(vector<string> & line, uint32_t loc) {
         }
         default:
             break;
+    }
+    int num_offset;
+    if (rs == "") {
+        num_rs = 0;
+        if (offset == "")
+           num_offset = stoi(*addr_pr, nullptr, 16);
+    } else {
+        if (offset == "") {
+            num_offset = 0;
+        } else {
+            num_offset = stoi(offset);
+        }
     }
     addr.first = num_rs;
     addr.second = num_offset;
