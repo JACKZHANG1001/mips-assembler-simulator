@@ -1,5 +1,6 @@
-cmake_minimum_required(VERSION 2.4)
+cmake_minimum_required(VERSION 3.0)
 
+set(CXX_COMPILER /usr/bin/g++)
 project(mips-assembler-simulator)
 
 set(CMAKE_CXX_STANDARD 11)
