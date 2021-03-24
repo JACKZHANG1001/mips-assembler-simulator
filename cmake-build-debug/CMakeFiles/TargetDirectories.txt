@@ -1,0 +1,6 @@
+/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/CMakeFiles/simulator.dir
+/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/CMakeFiles/assembler.dir
+/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/CMakeFiles/simulator_lib.dir
+/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/CMakeFiles/assembler_lib.dir

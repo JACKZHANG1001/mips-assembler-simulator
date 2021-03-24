@@ -1,5 +1,4 @@
 .idea
-cmake-build-debug
 sample
 .gitignore
 report.md

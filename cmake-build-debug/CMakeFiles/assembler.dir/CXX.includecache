@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/assembler/ass.h
+iostream
+-
+fstream
+-
+string
+-
+vector
+-
+cctype
+-
+cstdint
+-
+map
+-
+list
+-
+bitset
+-
+
+/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/src/assembler.cpp
+ass.h
+/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/src/ass.h
+

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="mips-assembler-simulator"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="simulator">
+				<Option output="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/simulator" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/include/simulator"/>
+					<Add directory="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/include/assembler"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.3/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 simulator"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="simulator/fast">
+				<Option output="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/simulator" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/include/simulator"/>
+					<Add directory="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/include/assembler"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.3/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 simulator/fast"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="assembler">
+				<Option output="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/assembler" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/include/assembler"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.3/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 assembler"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="assembler/fast">
+				<Option output="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/assembler" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/include/assembler"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.3/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 assembler/fast"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="simulator_lib">
+				<Option output="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/libsimulator_lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/include/simulator"/>
+					<Add directory="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/include/assembler"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.3/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 simulator_lib"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="simulator_lib/fast">
+				<Option output="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/libsimulator_lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/include/simulator"/>
+					<Add directory="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/include/assembler"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.3/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 simulator_lib/fast"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="assembler_lib">
+				<Option output="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/libassembler_lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/include/assembler"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.3/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 assembler_lib"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="assembler_lib/fast">
+				<Option output="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/libassembler_lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/include/assembler"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.3/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 assembler_lib/fast"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/src/ass.cpp">
+			<Option target="assembler_lib"/>
+		</Unit>
+		<Unit filename="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/src/assembler.cpp">
+			<Option target="assembler"/>
+		</Unit>
+		<Unit filename="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/src/cpu.cpp">
+			<Option target="simulator_lib"/>
+		</Unit>
+		<Unit filename="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/src/io.cpp">
+			<Option target="simulator_lib"/>
+		</Unit>
+		<Unit filename="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/src/loader.cpp">
+			<Option target="simulator_lib"/>
+		</Unit>
+		<Unit filename="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/src/memory.cpp">
+			<Option target="simulator_lib"/>
+		</Unit>
+		<Unit filename="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/src/simulator.cpp">
+			<Option target="simulator"/>
+		</Unit>
+		<Unit filename="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/src/syscall.cpp">
+			<Option target="simulator_lib"/>
+		</Unit>
+		<Unit filename="/Users/Jack/cuhksz/course/year2/term2/csc3050/mips-assembler-simulator/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
