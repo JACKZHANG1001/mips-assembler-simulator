@@ -35,12 +35,11 @@ This project uses CMake to build. To build the main simulator target, enter
 ```
 mkdir build
 cd build
-cmake --build . --target simulator
+cmake ..
+make
 ```
-To build the assembler, enter
-```
-cmake --build . --target assembler
-```
+And it will build two executable files, assembler and simulator.
+
 
 ## Simplified MIPS assembler
 This assembler does not support pseudo-instructions nor co-processor instructions. It strictly follows the format in the textbook.
