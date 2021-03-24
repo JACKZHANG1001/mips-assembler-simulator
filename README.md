@@ -36,7 +36,7 @@ This project uses CMake to build. To build the main simulator target, enter
 mkdir build
 cd build
 cmake ..
-make
+make simulator // or make assembler
 ```
 And it will build two executable files, assembler and simulator.
 
