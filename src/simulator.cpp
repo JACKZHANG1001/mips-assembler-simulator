@@ -26,13 +26,16 @@ int main(int argc, char** argv) {
     }
     Output.close();
 
+    // init registers
+    init_cpu();
+    init_memory();
+
     // loader
     read_object(OBJ);
     load_text();
     load_data();
 
-    // init registers
-    init_cpu();
+
 
     // running
     INSTRUCTION_INFO temp;
@@ -40,7 +43,7 @@ int main(int argc, char** argv) {
         temp = read_ins(MEMORY[PC]);
         PC += 4;
         exe_ins(temp);
-        if (stoi(MEMORY[PC], nullptr, 2) == 0) {
+        if (MEMORY[PC] == "00000000000000000000000000000000") {
             cout << "Program finished." << endl;
             break;
         }

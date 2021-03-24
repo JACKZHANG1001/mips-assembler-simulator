@@ -2,7 +2,45 @@
 
 ## Project Overview
 
-This project is the first assignment of CSC3050 Computer Architecture in LGU. A simplified MIPS assembler and a corresponding simulator are coded.
+This project is the first assignment of CSC3050 Computer Architecture in CUHKSZ. A simplified MIPS assembler and a corresponding simulator are coded.
+
+### File tree
+The file tree of this project is listed below:
+```
+.
+├── CMakeLists.txt
+├── README.md
+├── include
+│   ├── assembler
+│   │   └── ass.h 
+│   └── simulator
+│       ├── cpu.h
+│       ├── io.h
+│       ├── loader.h
+│       ├── memory.h
+│       ├── simulator.h
+│       └── syscall.h
+└── src
+    ├── ass.cpp
+    ├── assembler.cpp // only for the assembler target 
+    ├── cpu.cpp
+    ├── io.cpp
+    ├── loader.cpp
+    ├── memory.cpp
+    ├── simulator.cpp // main simulator target
+    └── syscall.cpp
+```
+### How to build this project
+This project uses CMake to build. To build the main simulator target, enter
+```
+mkdir build
+cd build
+cmake --build . --target simulator
+```
+To build the assembler, enter
+```
+cmake --build . --target assembler
+```
 
 ## Simplified MIPS assembler
 This assembler does not support pseudo-instructions nor co-processor instructions. It strictly follows the format in the textbook.
@@ -88,7 +126,28 @@ The supporting instructions are listed below:
     MTLO,        // r, op: 00, funct: 13
     SYSCALL      // r, op: 00, funct: 0c
 ```
-
-### Simulator
+To run the assembler, enter
+```
+./assembler INPUT_FILE
+```
+And the assembler will output a OBJECT file. The format of the object file
+is listed below:
+```
+bin
+bin
+bin
+...
+bin
+.data
+.byte,XX
+.byte,XX
+```
+Above the ".data" are the machine binary codes of the text segment, and below are the mips data
+directives.
+## Simulator
+To run the simulator, enter:
+```
+./simulator XX.in XX.asm XX.out
+```
 
 

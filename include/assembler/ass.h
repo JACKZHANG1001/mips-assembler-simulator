@@ -163,7 +163,9 @@ void clean_comment(list<string> & lines);
 
 INSTRUCTION_INFO get_instruction_info(vector<string> & line, uint32_t loc);
 
-map<string,uint32_t> get_label_table(list<string> & lines);
+map<string,uint32_t> get_label_table(list<string> & lines, bool is_data = false);
+
+vector<string> split(string &line);
 
 string info_to_binary(INSTRUCTION_INFO &);
 

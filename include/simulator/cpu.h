@@ -25,10 +25,6 @@ void init_cpu();
 
 string norm_to_little(const string & norm_str);
 
-void load(REGISTER reg, int32_t content);
-
-void store(REGISTER reg, uint32_t addr);
-
 // a disassembler
 INSTRUCTION_INFO read_ins(const string & bin_str);
 

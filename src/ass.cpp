@@ -5,15 +5,6 @@
 #include "ass.h"
 using namespace std;
 
-/*
- * TODO: in the main function,
- *       use
- *       int main(int argc, char** argv)
- *       to handle reading problem
- *
- *       .text & .data ? in reading part
- */
-
 const uint32_t TEXT_BASE_ADDR = 0x400000;
 map<string, uint32_t> LABEL_TABLE;
 list<string> LINES;
@@ -161,7 +152,7 @@ void clean_comment(list<string> & lines) {
                 quote_loc = -1;
         }
         if (quote_loc == -1) {
-            bool flag1 = true; // TODO: this may be redundant
+            bool flag1 = true;
             for (auto i = 0; i < line_pr->length(); i++) {
                 if (flag1 && !isspace((*line_pr)[i])
                           && isspace((*line_pr)[i+1])) {
@@ -235,9 +226,13 @@ list<string>::iterator merging_lines(list<string>::iterator p1,
     return p1;
 }
 
-string releasing_label(string &line) {
-    // label1:addi$s1,$s2,$s3
-    // addi$s1,$s2,$s3
+string releasing_label(string &line, bool is_data = false) {
+    // label1:addi,$s1,$s2,$s3
+    // addi,$s1,$s2,$s3
+    // is_data = true:
+    // label1:addi,$s1.$s2.$s3 -> label1:addi,$s1.$s2.$s3
+    if (is_data)
+        return line;
     bool flag = false;
     string temp = "";
     for (auto i = 0; i < line.length(); i++) {
@@ -253,7 +248,7 @@ string releasing_label(string &line) {
     return temp;
 }
 
-map<string,uint32_t> get_label_table(list<string> & lines) {
+map<string,uint32_t> get_label_table(list<string> & lines, bool is_data) {
     // merging lines and release labels
     // case1
     // label1: expression
@@ -295,7 +290,7 @@ map<string,uint32_t> get_label_table(list<string> & lines) {
                 // behind the :
                 flag = true;
                 label_to_add = "";
-                *line_pr = releasing_label(*line_pr);
+                *line_pr = releasing_label(*line_pr, is_data);
                 break;
                 // addition completed
                 // go to the next line
@@ -309,7 +304,7 @@ map<string,uint32_t> get_label_table(list<string> & lines) {
             label_to_add = "";
             merging_lines(line_pr, (++line_pr), lines);
             --line_pr;
-            *line_pr = releasing_label(*line_pr);
+            *line_pr = releasing_label(*line_pr, is_data);
         }
     }
     return LABEL_TABLE;
@@ -327,6 +322,8 @@ vector<string> split(string &line) {
             ptr++;
             ch_pr = ptr;
         }
+        if ((*ptr) == '"')
+            break;
     }
     result.push_back(string(ch_pr, line.end()));
     return result;
@@ -342,7 +339,6 @@ vector<vector<string> > tokenizer(list<string> & lines) {
 int branch_label_trans(vector<string> & line, uint32_t loc) {
     // help function
     // bne,rs,rt,label -> bne,rs,rt,ADDR
-    // TODO: loc ? dealing with the TEXT_BASE_ADDR
     auto label_pr = line.end() - 1;
     auto addr_pr = LABEL_TABLE.find((*label_pr));
     auto label_loc = addr_pr->second;
@@ -553,8 +549,6 @@ REGISTER get_register(string & str) {
 
 INSTRUCTION_INFO get_instruction_info(vector<string> & line, uint32_t loc) {
     // line is the tokenized vector<string>
-    // TODO: etc? str -> int?
-    // TODO: store, load
 
     string ins = line[0];
     INSTRUCTION_INFO temp;
@@ -1024,7 +1018,10 @@ INSTRUCTION_INFO get_instruction_info(vector<string> & line, uint32_t loc) {
        temp.funct = 0x09;
        temp.rs = get_register(line[1]);
        temp.rt = 0;
-       temp.rd = get_register(line[2]);
+       if (line.size() == 3)
+           temp.rd = get_register(line[2]);
+       else
+           temp.rd = $ra;
     }
      if (ins == "jr") {
        temp.name = JR;
@@ -1416,6 +1413,94 @@ vector<string> translate(vector<vector<string> > & tokens) {
     return result;
 }
 
+string data_trans(vector<string>  data_line) {
+    /*
+     * .asciiz or .ascii will be translated to
+     * .byte
+     */
+    string temp = "";
+   if (data_line[0] == ".asciiz") {
+       data_line[1].erase(data_line[1].begin());
+       data_line[1].erase(data_line[1].end() - 1);
+       for (int i = 0; i < data_line[1].length(); i++) {
+           if (data_line[1][i] == 92 && data_line[1][i+1] == 'n') {
+               temp += ".byte,";
+               temp += bitset<8>(10).to_string();
+               temp += "\n";
+               i = i + 1;
+               continue;
+           }
+           temp += ".byte,";
+           temp += bitset<8>(int((data_line[1][i]))).to_string();
+           temp += "\n";
+       }
+       temp += ".byte,00000000\n";
+       // alignment
+       int count = 0;
+       for (auto i = 0; i < temp.length(); i++) {
+           if (temp[i] == ',')
+               count++;
+       }
+       count = count % 4;
+       if (count == 0)
+           temp;
+       else if (count == 1)
+           temp += ".byte,00000000\n.byte,00000000\n.byte,00000000\n";
+       else if (count == 2)
+           temp += ".byte,00000000\n.byte,00000000\n";
+       else if (count == 3)
+           temp += ".byte,00000000\n";
+
+       temp.erase(temp.end() - 1);
+       return temp;
+   } else if (data_line[0] == ".ascii") {
+       data_line[1].erase(data_line[1].begin());
+       data_line[1].erase(data_line[1].end() - 1);
+       for (int i = 0; i < data_line[1].length(); i++) {
+           if (data_line[1][i] == 92 && data_line[1][i+1] == 'n') {
+               temp += ".byte,";
+               temp += bitset<8>(10).to_string();
+               temp += "\n";
+               i = i + 1;
+               continue;
+           }
+           temp += ".byte,";
+           temp += bitset<8>(int((data_line[1][i]))).to_string();
+           temp += "\n";
+       }
+       // alignment
+       int count = 0;
+       for (auto i = 0; i < temp.length(); i++) {
+           if (temp[i] == ',')
+               count++;
+       }
+       count = count % 4;
+       if (count == 0)
+           temp;
+       else if (count == 1)
+           temp += ".byte,00000000\n.byte,00000000\n.byte,00000000\n";
+       else if (count == 2)
+           temp += ".byte,00000000\n.byte,00000000\n";
+       else if (count == 3)
+           temp += ".byte,00000000\n";
+
+       temp.erase(temp.end() - 1);
+       return temp;
+   } else if (data_line[0] == ".word") {
+       temp += ".word,";
+       temp += bitset<32>(stoi(data_line[1])).to_string();
+       return temp;
+   } else if (data_line[0] == ".half") {
+       temp += ".half,";
+       temp += bitset<16>(stoi(data_line[1])).to_string();
+       return temp;
+   } else if (data_line[0] == ".byte") {
+       temp += ".byte,";
+       temp += bitset<8>(stoi(data_line[1])).to_string();
+       return temp;
+   }
+}
+
 vector<string> output() {
     read_text(cin);
     read_data(cin);
@@ -1427,7 +1512,7 @@ vector<string> output() {
     vector<string> result = translate();
     result.push_back(".data");
     for (auto i : DATA) {
-        result.push_back(i);
+        result.push_back(data_trans(split(i)));
     }
     return result;
 }
@@ -1444,7 +1529,7 @@ vector<string> output(char* filename) {
     vector<string> result = translate();
     result.push_back(".data");
     for (auto i : DATA) {
-        result.push_back(i);
+        result.push_back(data_trans(split(i)));
     }
     return result;
 }

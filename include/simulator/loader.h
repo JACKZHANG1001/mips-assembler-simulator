@@ -5,10 +5,10 @@
 #ifndef MIPS_ASSEMBLER_SIMULATOR_LOADER_H
 #define MIPS_ASSEMBLER_SIMULATOR_LOADER_H
 
-#define OBJ "OBJECT"
 #include "ass.h"
 #include "memory.h"
 #include "cpu.h"
+extern char OBJ[];
 using namespace std;
 
 /*
