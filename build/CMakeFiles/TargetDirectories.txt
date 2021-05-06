@@ -1,0 +1,6 @@
+/Users/Jack/mips-assembler-simulator/build/CMakeFiles/rebuild_cache.dir
+/Users/Jack/mips-assembler-simulator/build/CMakeFiles/edit_cache.dir
+/Users/Jack/mips-assembler-simulator/build/CMakeFiles/simulator.dir
+/Users/Jack/mips-assembler-simulator/build/CMakeFiles/assembler.dir
+/Users/Jack/mips-assembler-simulator/build/CMakeFiles/simulator_lib.dir
+/Users/Jack/mips-assembler-simulator/build/CMakeFiles/assembler_lib.dir

@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libassembler_lib.a CMakeFiles/assembler_lib.dir/src/ass.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libassembler_lib.a
